@@ -1,16 +1,17 @@
 ---
 
-actAs: 
-    Timestampable: 
+actAs:
+    Timestampable:
 
 Administrasi_Model_Big:
     tableName: big
     columns:
-        nip: 
+        nip:
             type: integer(20)
             unique: true
             notnull: true
-        nama: 
+            primary: true
+        nama:
             type: string(50)
             notnull: true
         kode:
@@ -22,11 +23,12 @@ Administrasi_Model_Big:
 
 Administrasi_Model_Bis:
     tableName: bis
-    columns: 
-        nis: 
+    columns:
+        nis:
             type: integer(6)
             unique: true
             notnull: true
+            primary: true
         nama:
             type: string(50)
             notnull: true
@@ -43,6 +45,7 @@ Administrasi_Model_Bip:
             type: string(3)
             unique: true
             notnull: true
+            primary: true
         nama:
             type: string(30)
             unique: true
@@ -57,10 +60,11 @@ Administrasi_Model_Bik:
             type: integer(10)
             notnull: true
             unique: true
-        nama: 
+            primary: true
+        nama:
             type: string(50)
             notnull: true
-        jk: 
+        jk:
             type: enum
             values: ['L', 'P']
         tugas:
@@ -77,8 +81,9 @@ Administrasi_Model_Semester:
         kode:
             type: string(15)
             unique: true
+            primary: true
             notnull: true
-        tahun_ajaran: 
+        tahun_ajaran:
             type: string(9)
             primary: true
         semester:
@@ -88,10 +93,10 @@ Administrasi_Model_Semester:
         akhir_ajaran: date
         catatan: string(255)
 
-Administrasi_Model_StatusSiswa: 
+Administrasi_Model_StatusSiswa:
     tableName: status_siswa
     columns:
-        nis: 
+        nis:
             type: integer(6)
             notnull: true
         kode_semester:
@@ -119,14 +124,14 @@ Administrasi_Model_PrestasiSiswa:
         nis:
             type: integer(6)
             notnull: true
-        semester: 
+        semester:
             type: string(15)
             notnull: true
         kegiatan: string(50)
-        prestasi: 
+        prestasi:
             type: string(30)
             notnull: true
-        keterangan: string        
+        keterangan: string
         catatan: string(255)
     relations:
         Nis:
