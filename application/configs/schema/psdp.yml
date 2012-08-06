@@ -1,0 +1,143 @@
+---
+
+actAs: 
+    Timestampable: 
+
+Administrasi_Model_Big:
+    tableName: big
+    columns:
+        nip: 
+            type: integer(20)
+            unique: true
+            notnull: true
+        nama: 
+            type: string(50)
+            notnull: true
+        kode:
+            type: string(2)
+            unique: true
+            notnull: true
+        catatan:
+            type: sring(255)
+
+Administrasi_Model_Bis:
+    tableName: bis
+    columns: 
+        nis: 
+            type: integer(6)
+            unique: true
+            notnull: true
+        nama:
+            type: string(50)
+            notnull: true
+        jk:
+            type: enum
+            values: ['L', 'P']
+        catatan:
+            type: sring(255)
+
+Administrasi_Model_Bip:
+    tableName: bip
+    columns:
+        kode:
+            type: string(3)
+            unique: true
+            notnull: true
+        nama:
+            type: string(30)
+            unique: true
+            notnull: true
+        keterangan: string(255)
+        catatan: string(255)
+
+Administrasi_Model_Bik:
+    tableName: bik
+    columns:
+        nik:
+            type: integer(10)
+            notnull: true
+            unique: true
+        nama: 
+            type: string(50)
+            notnull: true
+        jk: 
+            type: enum
+            values: ['L', 'P']
+        tugas:
+            type: string(255)
+        catatan:
+            type: sring(255)
+
+Administrasi_Model_Semester:
+    tableName: semester
+    columns:
+        id:
+            type: integer(3)
+            autoincrement: true
+        kode:
+            type: string(15)
+            unique: true
+            notnull: true
+        tahun_ajaran: 
+            type: string(9)
+            primary: true
+        semester:
+            type: enum
+            values: ['gasal', 'genap']
+        awal_ajaran: date
+        akhir_ajaran: date
+        catatan: string(255)
+
+Administrasi_Model_StatusSiswa: 
+    tableName: status_siswa
+    columns:
+        nis: 
+            type: integer(6)
+            notnull: true
+        kode_semester:
+            type: string(15)
+            notnull: true
+        status: string(10)
+        catatan: string(255)
+    relations:
+        Nis:
+            class: Administrasi_Model_Bis
+            local: nis
+            foreign: nis
+            onUpdate: CASCADE
+            onDelete: CASCADE
+        Semester:
+            class: Administrasi_Model_Semester
+            local: kode_semester
+            foreign: kode
+            onUpdate: CASCADE
+            onDelete: CASCADE
+
+Administrasi_Model_PrestasiSiswa:
+    tableName: prestasi_siswa
+    columns:
+        nis:
+            type: integer(6)
+            notnull: true
+        semester: 
+            type: string(15)
+            notnull: true
+        kegiatan: string(50)
+        prestasi: 
+            type: string(30)
+            notnull: true
+        keterangan: string        
+        catatan: string(255)
+    relations:
+        Nis:
+            class: Administrasi_Model_Bis
+            local: nis
+            foreign: nis
+            onUpdate: CASCADE
+            onDelete: CASCADE
+        Semester:
+            class: Administrasi_Model_Semester
+            local: kode_semester
+            foreign: kode
+            onUpdate: CASCADE
+            onDelete: CASCADE

@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="span2">
+        <div class="accordion" id="administrasi">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#administrasi" href="#siswa">
+                  Siswa
+                </a>
+              </div>
+              <div id="siswa" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                  <ul class="unstyled">
+                    <li class="left-content" id="daftar-siswa">Daftar Siswa</li>
+                    <li class="left-content" id="input-siswa">Siswa Baru</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#administrasi" href="#guru">
+                  Guru
+                </a>
+              </div>
+              <div id="guru" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <ul class="unstyled">
+                    <li class="left-content" id="daftar-guru">Daftar Guru</li>
+                    <li class="left-content" id="input-guru">Guru Baru</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#administrasi" href="#pelajaran">
+                  Pelajaran
+                </a>
+              </div>
+              <div id="pelajaran" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <ul class="unstyled">
+                    <li class="left-content" id="daftar-pelajaran">Daftar Pelajaran</li>
+                    <li class="left-content" id="input-pelajaran">Pelajaran Baru</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#administrasi" href="#user">
+                  User
+                </a>
+              </div>
+              <div id="user" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <ul class="unstyled">
+                    <li class="left-content" id="daftar-user">Daftar Pengguna</li>
+                    <li class="left-content" id="input-user">Pengguna Baru</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#administrasi" href="#semester">
+                  Semester
+                </a>
+              </div>
+              <div id="semester" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <ul class="unstyled">
+                    <li class="left-content" id="daftar-semester">Daftar Semester</li>
+                    <li class="left-content" id="input-semester">Semester Baru</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>        
+    </div>
+    <div id="ajax-content" class="span9">
+
+    </div>
+</div>
+
+<? $this->headStyle()->captureStart() ?>
+li.left-content:hover{background-color: #CCC; padding: 5px 0px 5px 15px; margin: 1px -15px}
+<? $this->headStyle()->captureEnd() ?>
+
+<? $this->headScript()->captureStart() ?>
+$(function(){    
+    $('.left-content').on('click', function(){
+        $.ajax({
+            type: 'post',        
+            url: '/administrasi/index/xhr/do/' + this.id + '/format/html',
+            success: function(html){
+                $('#ajax-content').empty().html(html);
+            },
+            error: function(xhr, status){
+
+            }
+        });
+    });
+})
+<? $this->headScript()->captureEnd() ?>

@@ -1,0 +1,40 @@
+<div class="container">
+    <?= $this->form ? $this->form : '' ?>
+    <div id="notification"></div>
+
+    <?= $this->resetData ? $this->resetData : '' ?>
+
+    <? if($this->list): ?>
+    <ul class="unstyled">
+        <h4>Are sure to reset the following data..</h4>
+        <? foreach($this->list['resetdata'] as $v): ?>
+        <li class="rst" id="<?= $v ?>"><?= ucfirst($v) ?></li>
+        <? endforeach ?>
+    <ul>
+    <? endif ?>
+</div>
+
+<? $this->headScript()->captureStart() ?>
+$(function(){
+    $('#admin-user').validate({
+        submitHandler: function(form){
+            $(form).ajaxSubmit({
+                success: function(){
+                    $(form).resetForm().hide();
+                    $('#notification').html('<h4>Admin user successfully created</h4>');
+                }
+            });
+        }
+    });
+    $('.rst').on('click', function(){
+        var id = this.id;
+        $.ajax({
+            type: 'post',            
+            url: '/install/index/xhr/do/reset-' + this.id +  '/format/html',
+            success: function(data){
+                $('#' + id).append('. Successfully reset').css('color', 'red').removeClass('rst');
+            }
+        });
+    });
+})
+<? $this->headScript()->captureEnd() ?>

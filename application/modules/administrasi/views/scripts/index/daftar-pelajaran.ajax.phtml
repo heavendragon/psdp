@@ -1,0 +1,34 @@
+<? if($this->pelajaran): ?>
+    <fieldset>
+        <input id="qsearch" name="qsearch" placeholder="Filter.." />
+    </fieldset>
+    <table id="table-pelajaran" class="table table-bordered table-condensed table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kode</th>
+                <th>Nama</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <? foreach($this->pelajaran as $k => $v): ?>
+            <tr>
+                <td><?= ($k + 1) ?></td>
+                <td class="editable" id="<?= $v->id ?>-kode-unique"><?= $v->kode ?></td>
+                <td class="editable" id="<?= $v->id ?>-nama-etd"><?= $v->nama ?></td>                
+            </tr>
+            <? endforeach ?>
+        </tbody>
+    </tabl>
+<? endif ?>
+
+<script type="text/javascript">
+//<!--[CDATA[
+$(function(){
+    $('#qsearch').quicksearch('#table-pelajaran tbody tr');
+    $('.editable').editable('/administrasi/index/xhr/do/pelajaran-inline-update/format/html', {
+        submit: 'OK', cancel: 'Cancel'
+    })
+})
+//]]    
+</script>

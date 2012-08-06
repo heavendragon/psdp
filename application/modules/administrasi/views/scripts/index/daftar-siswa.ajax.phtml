@@ -1,0 +1,36 @@
+<? if(count($this->siswa)): ?>
+    <fieldset>
+        <input id="qsearch" name="qsearch" placeholder="Filter.." />
+    </fieldset>
+    <table id="table-siswa" class="table table-bordered table-condensed table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NIS</th>
+                <th>Nama</th>
+                <th>L/P</th>
+            </tr>
+        </thead>
+        <tbody>
+            <? foreach($this->siswa as $k => $v): ?>
+            <tr>
+                <td><?= ($k + 1) ?></td>
+                <td class="editable" id="<?= $v->id ?>-nis-unique"><?= $v->nis ?></td>
+                <td class="editable" id="<?= $v->id ?>-nama-etd"><?= $v->nama ?></td>
+                <td><?= $v->jk ?></td>
+            </tr>
+            <? endforeach ?>
+        </tbody>
+    </tabl>
+<? endif ?>
+
+<script type="text/javascript">
+//<!--[CDATA[
+$(function(){
+    $('#qsearch').quicksearch('#table-siswa tbody tr');
+    $('.editable').editable('/administrasi/index/xhr/do/siswa-inline-update/format/html', {
+        submit: 'OK', cancel: 'Cancel'
+    })
+})
+//]]    
+</script>

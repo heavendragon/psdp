@@ -1,0 +1,56 @@
+<?= $this->doctype() ?>
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+    <head>
+        <?= $this->headTitle() ?>  
+        <?= $this->headMeta() ?> 
+        <?= $this->headLink() ?>
+        <?= $this->headStyle() ?> 
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      </style>       
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <a class="brand" href="#">Perencanaan Sumber Daya Pendidikan</a>
+              
+              <div class="btn-group pull-right">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="icon-user"></i> <?= $this->activeUser ?>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Profile</a></li>
+                  <li class="divider"></li>
+                  <li><a href="<?= $this->baseUrl('/login/out') ?>">Sign Out</a></li>
+                </ul>
+              </div>
+              
+              <div class="nav-collapse">
+                <ul class="nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="/administrasi">Administrasi</a></li>
+                  <li><a href="/guru">Guru</a></li>
+                </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+          </div>
+    </div>
+    <div class="container-fluid">
+        <?= $this->layout()->content; ?>
+    </div>
+        <?= $this->JQuery() ?>        
+        <?= $this->headScript() ?>
+                
+    </body>
+</html>

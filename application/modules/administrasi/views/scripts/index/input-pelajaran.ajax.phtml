@@ -1,0 +1,33 @@
+<?= $this->form ? $this->form : '' ?>
+
+<script type="text/javascript">
+//<!-[CDATA[
+$(function(){
+    $('#form-input-pelajaran').validate({
+        submitHandler: function(form){
+            $(form).ajaxSubmit({
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }
+    });
+    $('#kode').on('change', function(){
+        $.ajax({
+            type: 'post',
+            data: 'tbl=bip&fld=kode&val=' + $('#kode').val(),
+            url: '/administrasi/index/xhr/do/isunique/format/html',
+            success: function(json){
+                var obj = $.parseJSON(json);
+                if(obj.alert){
+                    $('#nama, #jk, #submit').attr('disabled', 'disabled');
+                    $('#nis').focus();
+                }else{
+                    $('#nama, #jk, #submit').removeAttr('disabled');
+                }
+            }
+        })
+    })
+})
+//]]>
+</script>
